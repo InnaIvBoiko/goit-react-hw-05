@@ -6,7 +6,6 @@ export default function HomePage() {
     
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
 
     useEffect(() => {
         async function fetchMovies() {
@@ -15,7 +14,7 @@ export default function HomePage() {
                 const data = await getMovies();
                 setMovies(data);
             } catch (error) {
-                setError(true);
+                console.log(error);
             } finally {
                 setLoading(false);
             }

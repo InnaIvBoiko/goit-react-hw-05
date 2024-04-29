@@ -3,25 +3,25 @@ import { Link, Outlet, useParams } from 'react-router-dom';
 import MovieCast from '../../components/MovieCast/MovieCast';
 import MovieReviews from '../../components/MovieReviews/MovieReviews';
 import { getMovieById } from '../../movies-api';
-import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 
 export default function MovieDetailsPage() {
     const { movieId } = useParams();
     const [movieData, setMovieData] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
 
-    const defaultImg = '<https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg>';
+    const defaultImg = 'https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg';
 
     useEffect(() => {
+        if (!movieId) return;
+
         async function fetchMovie() {
             try {
                 setLoading(true);
                 const data = await getMovieById(movieId);
                 setMovieData(data);
             } catch (error) {
-                setError(true);
+                console.log(error);
             } finally {
                 setLoading(false);
             }
@@ -30,7 +30,7 @@ export default function MovieDetailsPage() {
     }, [movieId]);
 
     if (!movieData) {
-        return <NotFoundPage />;
+        return ;
     }
 
     return (
