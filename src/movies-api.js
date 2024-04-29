@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { createRoutesFromChildren } from 'react-router-dom';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
@@ -14,7 +15,19 @@ export const getMovies = async () => {
     return response.data.results;
 };
 
-export const getMovieById = async (movie_id) => {
-    const response = await axios.get(`/movie/${movie_id}`, options);
+export const getMovieById = async (movieId) => {
+    const response = await axios.get(`/movie/${movieId}`, options);
     return response.data;
+};
+
+export const getMovieCast = async (movieId) => {
+    const response = await axios.get(`movie/${movieId}/credits?`, options);
+    console.log(response.data.cast)
+    return response.data.cast;
+};
+
+export const getMovieReviews = async (movieId) => {
+    const response = await axios.get(`movie/${movieId}/reviews?`, options);
+    console.log(response.data.results)
+    return response.data.results;
 };
