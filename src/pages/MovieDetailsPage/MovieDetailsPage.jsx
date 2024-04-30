@@ -1,5 +1,5 @@
-import { Suspense, useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Suspense, useEffect, useRef, useState } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import MovieCast from '../../components/MovieCast/MovieCast';
 import MovieReviews from '../../components/MovieReviews/MovieReviews';
 import { getMovieById } from '../../movies-api';
@@ -9,6 +9,8 @@ export default function MovieDetailsPage() {
     const { movieId } = useParams();
     const [movieData, setMovieData] = useState(null);
     const [loading, setLoading] = useState(false);
+    const location = useLocation();
+    const backLinkURLRef = useRef(location.state ?? "/");
 
     const defaultImg = 'https://dl-media.viber.com/10/share/2/long/vibes/icon/image/0x0/95e0/5688fdffb84ff8bed4240bcf3ec5ac81ce591d9fa9558a3a968c630eaba195e0.jpg';
 
@@ -35,7 +37,7 @@ export default function MovieDetailsPage() {
 
     return (
         <>
-            <Link to=''>Go back</Link>
+            <Link to={backLinkURLRef.current}>Go back</Link>
             {loading && <b>Loading details of movie...</b>}
             <div>
                 <img src={

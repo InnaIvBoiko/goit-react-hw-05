@@ -26,7 +26,7 @@ export default function HomePage() {
         <>
             <h1>Trending today</h1>
             {loading && <b>Loading movies...</b>}
-            <MovieList movies={movies}/>
+            <MovieList movies={movies} />
         </>
     );
 }
