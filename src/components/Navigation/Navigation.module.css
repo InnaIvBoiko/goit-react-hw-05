@@ -9,6 +9,6 @@
 }
 
 .active {
-  background-color: teal;
-  color: #fff;
+  text-decoration: underline;
+  color: grey;
 }

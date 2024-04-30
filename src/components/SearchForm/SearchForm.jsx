@@ -1,7 +1,5 @@
-// import css from './SearchForm.module.css';
-
-import { useId } from "react";
-
+import { useId } from 'react';
+import css from './SearchForm.module.css';
 
 export default function SearchForm({ onSearch }) {
     const searchId = useId();
@@ -17,6 +15,7 @@ export default function SearchForm({ onSearch }) {
         <form onSubmit={handleSubmit}>
             <label htmlFor={searchId}>
                 <input
+                    className={css.input}
                     type='text'
                     name='search'
                     id={searchId}

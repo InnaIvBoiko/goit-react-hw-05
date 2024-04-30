@@ -1,0 +1,9 @@
+.input {
+  padding: 8px;
+  margin-right: 24px;
+  width: 250px;
+}
+
+.input::placeholder {
+  color: rgba(42, 42, 42, 0.3);
+}

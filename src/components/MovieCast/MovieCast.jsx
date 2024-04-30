@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { getMovieCast } from "../../movies-api";
-import { MdOutlineNoPhotography } from "react-icons/md";
-// import css from './MovieCast.module.css';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getMovieCast } from '../../movies-api';
+import { MdOutlineNoPhotography } from 'react-icons/md';
+import css from './MovieCast.module.css';
 
 export default function MovieCast() {const { movieId } = useParams();
     const [cast, setCast] = useState([]);
@@ -31,7 +31,7 @@ export default function MovieCast() {const { movieId } = useParams();
                     <h2>Movie Cast</h2>
                     <ul>
                         {cast.map(actor => (
-                            <li key={actor.id}>
+                            <li key={actor.id} className={css.item}>
                                 {actor.profile_path ? <img
                                     width="200px"
                                     height="300px"
@@ -39,8 +39,7 @@ export default function MovieCast() {const { movieId } = useParams();
                                     alt={actor.original_name}
                                 /> :
                                 <MdOutlineNoPhotography color={'#2196f3'} size={200} />}
-                                <h3>{actor.name}</h3>
-                                
+                                <h3>{actor.name}</h3>  
                             </li>
                         ))}
                     </ul>

@@ -1,14 +1,12 @@
-// import css from './MovieReviews.module.css';
-
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { getMovieReviews } from "../../movies-api";
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getMovieReviews } from '../../movies-api';
+import css from './MovieReviews.module.css';
 
 export default function MovieReviews() {
     const { movieId } = useParams();
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
     
     useEffect(() => {
         async function fetchReviews() {
@@ -17,7 +15,7 @@ export default function MovieReviews() {
                 const data = await getMovieReviews(movieId);
                 setReviews(data);
             } catch (error) {
-                setError(true);
+                console.log(error);
             } finally {
                 setLoading(false);
             }
@@ -33,8 +31,8 @@ export default function MovieReviews() {
                     <h2>Movie Reviews</h2>
                     <ul>
                         {reviews.map(review => (
-                            <li key={review.id}>
-                                <h3>Author: {review.author}</h3>
+                            <li key={review.id} className={css.item}>
+                                <h3 className={css.author}>Author: {review.author}</h3>
                                 <p>{review.content}</p>
                             </li>
                         ))}

@@ -3,6 +3,7 @@ import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import MovieCast from '../../components/MovieCast/MovieCast';
 import MovieReviews from '../../components/MovieReviews/MovieReviews';
 import { getMovieById } from '../../movies-api';
+import css from './MovieDetailsPage.module.css';
 
 
 export default function MovieDetailsPage() {
@@ -39,7 +40,7 @@ export default function MovieDetailsPage() {
         <>
             <Link to={backLinkURLRef.current}>Go back</Link>
             {loading && <b>Loading details of movie...</b>}
-            <div>
+            <div className={css.wrap}>
                 <img src={
                     movieData.poster_path ?
                         `https://image.tmdb.org/t/p/w500/${movieData.poster_path}`
@@ -47,7 +48,7 @@ export default function MovieDetailsPage() {
                 }
                     width={250}
                     alt={movieData.tagline} />
-                <div>
+                <div className={css.details}>
                     <h1>{movieData.title}({movieData.release_date.slice(0, 4)})</h1>
                     <p>User Score: {Math.round(movieData.vote_average * 10)}%</p>
                     <h2>Overview</h2>
@@ -63,7 +64,7 @@ export default function MovieDetailsPage() {
                 </div>
             </div>
             
-            <ul>
+            <ul className={css.more}>
                 <li>
                     <Link to='cast' element={<MovieCast />}>Cast</Link>
                 </li>

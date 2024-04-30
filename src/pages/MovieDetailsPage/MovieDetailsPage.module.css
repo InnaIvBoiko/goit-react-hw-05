@@ -1,0 +1,23 @@
+.wrap {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.details {
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.details span {
+  margin-right: 8px;
+}
+
+.more {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
